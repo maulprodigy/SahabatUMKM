@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahabat UMKM | AI Business Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050508; 
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar untuk kesan futuristik */	
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050508; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        .nav-link { position: relative; transition: all 0.3s; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: linear-gradient(90deg, #2dd4bf, #818cf8); transition: width 0.3s ease-in-out; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Neon Glow Effect */
+        .neon-shadow {
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4), 0 0 40px rgba(45, 212, 191, 0.1);
+        }
+        .neon-shadow:hover {
+            box-shadow: 0 0 30px rgba(45, 212, 191, 0.6), 0 0 60px rgba(129, 140, 248, 0.3);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col">
+
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-rose-600/10 blur-[100px] pointer-events-none z-0"></div>
+    <div class="fixed top-[40%] left-[50%] translate-x-[-50%] w-[600px] h-[400px] rounded-full bg-teal-900/20 blur-[150px] pointer-events-none z-0"></div>
+
+    <nav class="sticky top-0 z-50 bg-[#050508]/60 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-teal-500/20 to-indigo-500/20 border border-teal-500/30 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(45,212,191,0.2)]">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"/><path d="M19.4 15L21.4 15.8M14.9 21.6L14.5 19.2M9.1 21.6L9.5 19.2M4.6 15L2.6 15.8M4.6 9L2.6 8.2M9.1 2.4L9.5 4.8M14.9 2.4L14.5 4.8M19.4 9L21.4 8.2"/></svg>
+                </div>
+                <span class="font-extrabold tracking-tighter text-xl uppercase text-white">
+                    Sahabat <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">UMKM</span>
+                </span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Beranda</a>
+                <a href="#cara-pakai" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Cara Pakai</a>
+                <a href="#umkm" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">UMKM Terdaftar</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#form-section" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all backdrop-blur-md">
+                    Mulai Gratis
+                </a>
+                <button onclick="toggleMenu()" class="md:hidden text-white p-2 focus:outline-none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-[#050508]/95 backdrop-blur-xl border-b border-white/5 px-6 py-5 space-y-5 absolute w-full left-0 top-20 shadow-2xl">
+            <a href="#" class="block text-sm font-medium text-slate-300 hover:text-white transition-colors" onclick="toggleMenu()">Beranda</a>
+            <a href="#cara-pakai" class="block text-sm font-medium text-slate-300 hover:text-white transition-colors" onclick="toggleMenu()">Cara Pakai</a>
+            <a href="#umkm" class="block text-sm font-medium text-slate-300 hover:text-white transition-colors" onclick="toggleMenu()">UMKM Terdaftar</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center flex-grow">
+        
+        <div id="form-section" class="mb-24 mt-8">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-[1.1]">
+                BUAT PROFIL UMKM JADI <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-400 to-rose-400">PROFESIONAL DENGAN SEKALI KLIK!</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-12 text-lg font-light">
+                Ketik idemu, upload fotonya, dan biarkan AI merancang Nama, Slogan, hingga Foto Produk estetik untuk bisnismu.
+            </p>
+
+            <div class="bg-white/[0.03] backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-left max-w-3xl mx-auto shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                <div class="space-y-8">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            Deskripsi Ide Bisnis/Produk
+                        </label>
+                        <textarea id="deskripsi" rows="3" class="w-full px-5 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all text-sm text-slate-200 placeholder-slate-600 resize-none" placeholder="Saya mau jualan Seblak Mercon di daerah PCI Cilegon dengan kemasan kekinian"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                            Foto Produk Asli (Opsional)
+                        </label>
+                        <div class="group border-2 border-dashed border-white/10 rounded-2xl p-8 text-center hover:border-teal-500/50 hover:bg-teal-500/5 transition-all cursor-pointer relative bg-black/20">
+                            <input type="file" id="inputFoto" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-slate-400 group-hover:text-teal-400 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                                </div>
+                                <span id="previewText" class="text-xs font-medium text-slate-400 group-hover:text-teal-400">Pilih file atau tarik foto ke sini</span>
+                                <img id="imgPreview" class="hidden w-24 h-24 mt-2 rounded-xl object-cover shadow-lg border border-white/20">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btnAjaib" class="w-full bg-gradient-to-r from-teal-500 to-indigo-600 text-white font-extrabold py-5 rounded-2xl transition-all flex items-center justify-center gap-3 group neon-shadow border border-white/10 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                        <span id="btnText" class="relative z-10">Aktivasi Keajaiban AI</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="relative z-10 group-hover:rotate-12 transition-transform"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section id="cara-pakai" class="py-20 border-t border-white/5 text-left relative">
+            <h3 class="text-2xl font-bold text-white mb-10 text-center">Cara Kerja Sahabat UMKM</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="bg-white/[0.02] backdrop-blur-lg p-8 rounded-3xl border border-white/10 hover:bg-white/[0.04] transition-colors group">
+                    <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">1</div>
+                    <h4 class="font-bold text-white mb-3 text-lg">Input Ide</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed font-light">Tuliskan ide UMKM kamu secara detail atau singkat.</p>
+                </div>
+
+                <div class="bg-white/[0.02] backdrop-blur-lg p-8 rounded-3xl border border-white/10 hover:bg-white/[0.04] transition-colors group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-teal-500/20 text-teal-400 border border-teal-500/30 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">2</div>
+                        <h4 class="font-bold text-white mb-3 text-lg">Visual AI</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-light">AI akan menganalisis foto dan membuat poster estetik.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white/[0.02] backdrop-blur-lg p-8 rounded-3xl border border-white/10 hover:bg-white/[0.04] transition-colors group">
+                    <div class="w-12 h-12 bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">3</div>
+                    <h4 class="font-bold text-white mb-3 text-lg">Siap Jualan</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed font-light">Gunakan nama, slogan, dan promosi untuk konten sosmed.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="umkm" class="py-20 border-t border-white/5 text-left relative z-10">
+            <h3 class="text-2xl font-bold text-white mb-10 text-center">UMKM Terdaftar</h3>
+            <div id="container-umkm" class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                </div>
+        </section>
+        
+    </main>
+
+    <div id="modalDetail" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-white/10 w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl transition-all scale-95 opacity-0 duration-300" id="modalContent">
+            <div class="p-8 md:p-12 relative">
+                <button onclick="tutupModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div id="isiModal">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-auto bg-[#050508]/80 backdrop-blur-xl border-t border-white/5 py-3 px-6 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-wider">
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    Live Production System
+                </span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <span>© 2026 Sahabat UMKM AI</span>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btnChatToggle" class="fixed bottom-6 right-6 bg-teal-500 hover:bg-teal-400 text-white p-4 rounded-full shadow-lg neon-shadow transition-transform hover:scale-110 z-50 flex items-center justify-center font-bold">
+        💬 Chat AI
+    </button>
+
+    <div id="chatWindow" class="hidden fixed bottom-24 right-6 w-80 md:w-96 bg-[#0f172a] border border-teal-500/50 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50">
+        <div class="bg-teal-900/80 p-4 border-b border-teal-500/30 flex justify-between items-center backdrop-blur-sm">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🤖</span>
+                <h3 class="font-bold text-teal-300 text-sm">Bess (Asisten UMKM)</h3>
+            </div>
+            <button id="btnCloseChat" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+        </div>
+        
+        <div id="chatArea" class="p-4 h-80 overflow-y-auto flex flex-col gap-3 text-sm scroll-smooth">
+            <div class="bg-teal-900/30 text-teal-100 p-3 rounded-lg rounded-tl-none self-start max-w-[85%] border border-teal-500/20">
+                Halo Bess! 👋 Ada ide bisnis apa nih yang mau kita kulik bareng hari ini? Gas ngobrol!
+            </div>
+        </div>
+        
+        <div class="p-3 border-t border-teal-500/30 flex gap-2 bg-[#0a0f1c]">
+            <input type="text" id="chatInput" placeholder="Ketik ide/pertanyaanmu..." class="flex-1 bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-teal-400 text-sm">
+            <button id="btnKirimChat" class="bg-teal-500 hover:bg-teal-400 px-4 py-2 rounded-lg font-bold transition-all text-sm text-black">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. DATA & LOGIKA UMKM (BARU) ---
+        const umkmData = [
+            {
+                nama: "Jajanan punya sentul",
+                slogan: "Citarasa Premium, Jajanan Kebanggaan Warga Cilegon.",
+                profil: "Warga Cilegon dan sekitarnya, sudah cobain belum sensasi Dimsum Mentai dari Jajanan Punya Sentul? 🔥 Dimsum lembut berpadu dengan saus mentai creamy yang di-torch sempurna, bikin nagih di setiap gigitan! Cocok banget buat nemenin santai sore atau cemilan keluarga di rumah. Yuk, langsung order sekarang sebelum kehabisan! DM atau klik link untuk pemesanan.",
+                produk: ["Dimsum Mentai", "Jasuke", "Pempek Mix"],
+                // UBAH NAMA FILE INI DENGAN NAMA FOTO DI FOLDER KAMU:
+                gambar: "https://storage.googleapis.com/umkm-maul-images/foto-jajanan.jpeg", 
+                // TAMBAHAN KONTAK (Gunakan format 62... tanpa angka 0 di depan):
+                kontak: "6285186810804" 
+            },
+            {
+                nama: "Bimbel Amanah Cilegon",
+                slogan: "Belajar Nyaman, Hasil Maksimal, Amanah dalam Pendidikan",
+                profil: "Bingung cari teman belajar yang tepat buat buah hati di Cilegon? 🤔 Yuk, bergabung di Bimbel Amanah Cilegon! Kami hadir dengan metode belajar yang santai, tutor sabar, dan materi yang disesuaikan kurikulum sekolah. Fokus kami bukan cuma nilai bagus, tapi pemahaman yang mendalam agar anak lebih percaya diri. Lokasi strategis, biaya terjangkau, dan tentunya amanah dalam membimbing putra-putri Anda. Slot terbatas! DM sekarang untuk info kelas dan promo pendaftaran bulan ini. Mari wujudkan prestasi bersama Bimbel Amanah! 📚✨",
+                produk: ["SMU", "SMP", "SD", "Calistung Plus+"],
+                // UBAH NAMA FILE INI DENGAN NAMA FOTO DI FOLDER KAMU:
+                gambar: "https://storage.googleapis.com/umkm-maul-images/foto-bimbel.jpeg", 
+                kontak: "6287877087101"
+            },
+            {
+                nama: "Praktis Wash Cilegon",
+                slogan: "Solusi Kilap Tanpa Antre, Langsung ke Depan Pintu Anda.",
+                profil: "Capek ngantre di tempat cuci mobil/motor tapi kendaraan tetap kotor karena debu industri? 🚗💨 Tenang, Praktik Wash Cilegon hadir sebagai solusi cuci kendaraan panggilan yang praktis & profesional! Kami melayani area Cilegon dan sekitarnya. Tidak perlu keluar rumah, biar kami yang datang bawa peralatan lengkap ke lokasi Anda. Mobil/motor kinclong, waktu Anda tetap berharga! ✨",
+                produk: ["Cuci Body & Interior Mobil", "Cuci Body & Interior Motor"],
+                // UBAH NAMA FILE INI DENGAN NAMA FOTO DI FOLDER KAMU:
+                gambar: "https://storage.googleapis.com/umkm-maul-images/foto-wash.jpeg", 
+                kontak: "6285890020385"
+            }
+        ];
+
+function tampilkanUMKM() {
+    const container = document.getElementById('container-umkm');
+    container.innerHTML = umkmData.map((biz, index) => `
+        <div onclick="bukaModal(${index})" class="group cursor-pointer bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="${biz.gambar}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Foto ${biz.nama}">
+            </div>
+            <div class="p-6 flex-grow flex flex-col">
+                <h3 class="text-lg font-bold text-white mb-2">${biz.nama}</h3>
+                <p class="text-slate-400 text-xs line-clamp-3 mb-4 flex-grow">${biz.profil}</p>
+                <div class="mt-auto text-teal-400 text-xs font-bold flex items-center gap-2">
+                    LIHAT DETAIL 
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+        function bukaModal(index) {
+            const biz = umkmData[index];
+            const modal = document.getElementById('modalDetail');
+            const content = document.getElementById('modalContent');
+            const isi = document.getElementById('isiModal');
+
+            isi.innerHTML = `
+                <div class="mb-6 text-left">
+                    <h2 class="text-2xl font-black text-white mb-2">${biz.nama}</h2>
+                    <p class="text-teal-400 font-medium italic text-sm">"${biz.slogan}"</p>
+                </div>
+                <p class="text-slate-300 leading-relaxed mb-6 text-sm text-left">${biz.profil}</p>
+                <div class="bg-black/30 rounded-2xl p-5 border border-white/5 text-left mb-6">
+                    <h4 class="text-white font-bold mb-3 flex items-center gap-2 text-sm">
+                        📦 Produk / Layanan:
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${biz.produk.map(p => `<span class="bg-teal-500/10 text-teal-300 px-3 py-1 rounded-full text-xs font-bold border border-teal-500/20">${p}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <div class="text-left">
+                    <a href="https://wa.me/${biz.kontak}" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-indigo-600 text-white font-bold py-3 px-6 rounded-xl hover:scale-105 transition-transform shadow-lg border border-white/10">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Hubungi UMKM
+                    </a>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        function tutupModal() {
+            const modal = document.getElementById('modalDetail');
+            const content = document.getElementById('modalContent');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Tampilkan UMKM saat pertama kali dimuat
+        tampilkanUMKM();
+
+        // --- 2. LOGIKA UPLOAD & AI ASLI (TETAP SAMA) ---
+        const inputFoto = document.getElementById('inputFoto');
+        const imgPreview = document.getElementById('imgPreview');
+        const previewText = document.getElementById('previewText');
+        const btnAjaib = document.getElementById('btnAjaib');
+        const btnText = document.getElementById('btnText');
+        const inputDeskripsi = document.getElementById('deskripsi');
+        let fotoBase64 = null; // Untuk menyimpan kode gambar
+
+        inputFoto.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fotoBase64 = e.target.result; // Simpan gambar jadi Base64
+                    imgPreview.src = fotoBase64;
+                    imgPreview.classList.remove('hidden');
+                    previewText.textContent = file.name;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                fotoBase64 = null;
+                imgPreview.classList.add('hidden');
+                previewText.innerHTML = 'Pilih file atau tarik foto ke sini';
+            }
+        });
+        
+        btnAjaib.addEventListener('click', async function() {
+            const ide = inputDeskripsi.value;
+            if (!ide) return alert("Ceritakan dulu ide bisnismu, Bess!");
+
+            // Tampilan Loading
+            btnAjaib.disabled = true;
+            btnAjaib.classList.add('opacity-80', 'animate-pulse');
+            btnText.innerHTML = '🤖 AI Sedang Meracik...';
+
+            try {
+                // Tembak data ke Python Backend (Cloud Run Jakarta)
+                const response = await fetch('/generate-bisnis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        deskripsi: ide,
+                        input_image_base64: fotoBase64 // Kirim foto jika ada
+                    })
+                });
+                
+                if (!response.ok) throw new Error("Server mengembalikan error");
+
+                const data = await response.json();
+
+                // Simpan hasil di memori browser
+                localStorage.setItem('hasilAI', JSON.stringify(data));
+
+                // Pindah ke halaman hasil
+                window.location.href = 'hasil.html';
+            } catch (error) {
+                alert("Waduh, koneksi ke mesin Python gagal! Pastikan main.py sudah jalan.");
+                btnAjaib.disabled = false;
+                btnAjaib.classList.remove('opacity-80', 'animate-pulse');
+                btnText.innerHTML = 'Aktivasi Kecerdasan AI';
+            }
+        });
+
+        // DITAMBAHKAN: Fungsi Toggle Menu Mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // ================= LOGIKA CHATBOT =================
+        const btnChatToggle = document.getElementById('btnChatToggle');
+        const btnCloseChat = document.getElementById('btnCloseChat');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const btnKirimChat = document.getElementById('btnKirimChat');
+        const chatArea = document.getElementById('chatArea');
+
+        let chatHistory = []; // Menyimpan memori agar AI nyambung
+
+        // Buka / Tutup Chat Window
+        btnChatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
+        btnCloseChat.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+        // Fungsi Kirim Pesan ke Backend
+        async function kirimPesan() {
+            const pesan = chatInput.value.trim();
+            if (!pesan) return;
+
+            // 1. Tampilkan pesan user di layar
+            tambahPesanUI(pesan, 'user');
+            chatInput.value = '';
+
+            // 2. Tampilkan indikator loading AI
+            const loadingId = tambahPesanUI('Sedang berpikir... ⏳', 'ai', true);
+
+            try {
+                // 3. Tembak ke API lokal kita
+                const res = await fetch('/chat-brainstorming', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pesan: pesan, history: chatHistory })
+                });
+                
+                const data = await res.json();
+
+                // 4. Hapus tulisan "Sedang berpikir..."
+                document.getElementById(loadingId).remove();
+
+                if (data.status === 'sukses') {
+                    // Tampilkan balasan AI
+                    tambahPesanUI(data.balasan, 'ai');
+                    
+                    // Simpan ke memori agar AI ingat obrolan sebelumnya
+                    chatHistory.push({ role: 'USER', text: pesan });
+                    chatHistory.push({ role: 'BESS', text: data.balasan });
+                } else {
+                    tambahPesanUI('Yah error: ' + data.balasan, 'ai');
+                }
+            } catch (err) {
+                document.getElementById(loadingId).remove();
+                tambahPesanUI('Gagal konek ke server. Pastikan main.py nyala!', 'ai');
+            }
+        }
+
+        // Trigger kirim saat tombol diklik atau tekan Enter
+        btnKirimChat.addEventListener('click', kirimPesan);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') kirimPesan();
+        });
+
+        // Fungsi pembantu untuk membuat balon chat UI
+        function tambahPesanUI(teks, pengirim, isLoading = false) {
+            const div = document.createElement('div');
+            const isUser = pengirim === 'user';
+            const msgId = 'msg-' + Date.now();
+            div.id = msgId;
+
+            if (isUser) {
+                // Style balon chat User (Biru/Indigo, nempel kanan)
+                div.className = "bg-indigo-600 text-white p-3 rounded-lg rounded-tr-none self-end max-w-[85%] shadow-md";
+            } else {
+                // Style balon chat AI (Gelap/Teal, nempel kiri)
+                div.className = `bg-teal-900/40 text-teal-100 p-3 rounded-lg rounded-tl-none self-start max-w-[85%] border border-teal-500/20 shadow-md ${isLoading ? 'animate-pulse opacity-70' : ''}`;
+            }
+            
+            // Render teks (ubah spasi/enter jadi format HTML)
+            // Hapus tanda bintang (markdown) dari Gemini biar rapi
+            let teksBersih = teks.replace(/\*\*/g, '').replace(/\*/g, ''); 
+            div.innerHTML = teksBersih.replace(/\n/g, '<br>');
+            
+            chatArea.appendChild(div);
+            
+            // Otomatis scroll ke pesan paling bawah
+            chatArea.scrollTop = chatArea.scrollHeight; 
+            
+            return msgId;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Pakai mesin Python versi ringan
+FROM python:3.10-slim
+
+# Bikin folder kerja di dalam awan
+WORKDIR /app
+
+# Bawa daftar library yang dibutuhkan
+COPY requirements.txt .
+
+# Install semua library-nya
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Bawa semua file kamu (main.py, kunci-gcp.json, folder public, dll) ke dalam awan
+COPY . .
+
+# Paksa buka port 8080 dan nyalakan aplikasinya
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

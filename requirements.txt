@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+gspread
+google-genai
+vertexai
